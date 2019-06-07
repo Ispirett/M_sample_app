@@ -1,0 +1,18 @@
+
+<%= provide(:title ) %>
+<div class="heading">
+<h1 class="text-center">Sample app</h1>
+<p class="text-center">
+  This is the home page for the
+  <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
+  sample application.
+</p>
+  <div class="image-socket text-center">
+    <%= image_tag('kitten.jpg', alt: "kitten", class:"image") %>
+  </div>
+</div>
+
+
+
+<p class="text-center"><%= link_to image_tag( 'b.png', alt: "image", width: 100, ), 'http://rubyonrails.org' %> </p>
+<p class="text-center"><%= link_to 'SignUp', sign_up_path, class: "btn btn-lg btn-primary" %></p>
