@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       flash[:success] = " Hey you made it welcome"
-     redirect_to  home_path
-      session[:session_user_id] = user.id
+
+      log_in(user)
+      redirect_to user
       elsif
       flash.now[:danger] = "Please correct your email or your password :)"
       render :new
@@ -16,7 +17,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-
+    log_out
+    redirect_to home_path
   end
 
 end

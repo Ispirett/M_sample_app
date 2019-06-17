@@ -1,2 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+Ispire:
+  name: lol
+  email: lollol@gmail.com
+  password_digest: <%= User.digest('12345678') %>
+
