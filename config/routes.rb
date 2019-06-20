@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get  '/sign_up', to: 'users#new'
   post  "/sign_up", to: 'users#create'
-  get "/login" , to: 'sessions#new'
+  get "/login" , to: 'sessions#new', as: 'sessions_new'
   post "/login", to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 

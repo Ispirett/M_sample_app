@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash[:success] = " Hey you made it welcome"
       #save user to cookies
-      remember user
       log_in(user)
+      params[:session][:remember_me]  == '1' ? remember(user) : forget(user)
+
       redirect_to user
       elsif
       flash.now[:danger] = "Please correct your email or your password :)"
@@ -18,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to home_path
   end
 

@@ -24,7 +24,12 @@ class User < ApplicationRecord
   end
   # Returns true iff the five token matches digest
   def authenticated?(remember_token)
+    return false if  remember_digest.nil?
     BCrypt::Password.new(self.remember_digest).is_password?(remember_token)
+  end
+
+  def forget
+    update_attribute(:remember_token, nil)
   end
 
 end
