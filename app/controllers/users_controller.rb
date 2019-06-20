@@ -19,6 +19,9 @@ class UsersController < ApplicationController
     end
   end
 
+
+  # Remembers a user in the database for use in persistent sessions.
+
 private
   def user_params
     params.require(:user).permit(:name ,:email, :password )
