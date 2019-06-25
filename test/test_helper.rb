@@ -14,14 +14,14 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
   #login as particular user
-  def log_in_as(user)
+  def log_in_as?(user)
     session[:user_id] = user.id
   end
 
   class ActionDispatch::IntegrationTest
     #log in as a particular user
     def log_in_as(user, password: 'password', remember_me: '1')
-      post login_path, path, params: {seesion: {
+      post login_path, path, params: {session: {
           email: user.email,
           password: password,
           remenber_me: remember_me }}
