@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Welcome #{@user.name}"
       log_in @user
-      redirect_to redirect_back_or(user)
+      redirect_back_or(@user)
     else
       render :new
     end
