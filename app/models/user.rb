@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 
    def downcase_email
-     self.email = email.downcase
+   self .email.downcase!
    end
 
   # Returns the hash digest of the given string.
@@ -32,9 +32,10 @@ class User < ApplicationRecord
   end
 
   # Returns true iff the five token matches digest
-  def authenticated?(remember_token)
-    return false if  remember_token.nil?
-    BCrypt::Password.new(self.remember_token).is_password?(remember_token)
+  def authenticated?(attribute,token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   def forget
@@ -42,6 +43,16 @@ class User < ApplicationRecord
   end
 
   self.per_page = 10
+
+
+  # account activation
+  def activate
+    update_columns(activated: true, activated_at: Time.zone.now)
+  end
+
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
 
   # activation token
   private
