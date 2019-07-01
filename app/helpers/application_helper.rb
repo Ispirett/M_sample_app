@@ -9,4 +9,14 @@ module ApplicationHelper
     end
 
   end
+
+  def button_text(text = '')
+    default_text = 'Submit'
+    if text.empty?
+       default_text
+    else
+      text
+    end
+
+  end
 end
