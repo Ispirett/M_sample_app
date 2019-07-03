@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
+  get 'password_reset/new'
+  get 'password_reset/edit'
   root 'static_pages#home'
   get  '/sign_up', to: 'users#new'
   post  "/sign_up", to: 'users#create'
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
   get  "/contact", to:'static_pages#contact'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
- resources :users
+  resources :users
   resources :activation_accounts, only: [:edit]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end
