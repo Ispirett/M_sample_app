@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~>2.6.3'
 
+# images
+gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
+gem "mini_magick"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
@@ -68,6 +71,7 @@ end
 
 group :production do
   gem "pg"
+  gem 'fog'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
